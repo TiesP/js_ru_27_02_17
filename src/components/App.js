@@ -3,15 +3,17 @@ import ArticleList from './ArticleList/index'
 import Chart from './Chart'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
+import Calendar from './Calendar'
 
 class App extends Component {
+
     static propTypes = {
         articles: PropTypes.array.isRequired
     };
 
     state = {
         text: '',
-        selected: null
+        selectedItem: null
     }
 
     render() {
@@ -20,18 +22,20 @@ class App extends Component {
             label: article.title,
             value: article.id
         }))
+
         return (
             <div>
+                <Calendar />
                 Enter your name: <input type="text" value={this.state.text} onChange={this.handleTextChange}/>
-                <Select options = {options} value={this.state.selected} onChange = {this.handleSelectChange} multi/>
+                <Select options = {options} value={this.state.selectedItem} onChange = {this.handleSelectChange} multi/>
                 <ArticleList articles={this.props.articles}/>
                 <Chart articles={this.props.articles}/>
             </div>
         )
     }
 
-    handleSelectChange = selected => {
-        this.setState({ selected })
+    handleSelectChange = selectedItem => {
+        this.setState({ selectedItem })
     }
 
     handleTextChange = ev => {
@@ -41,6 +45,8 @@ class App extends Component {
             text: ev.target.value
         })
     }
+
 }
 
 export default App
+
