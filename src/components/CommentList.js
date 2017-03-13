@@ -12,6 +12,7 @@ class CommentList extends Component {
         comments: []
     }
 
+    //форму стоит вынести в отдельный компонент
     state = {
         name: '',
         comment: ''
