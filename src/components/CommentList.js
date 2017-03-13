@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
+import CommentForm from './CommentForm'
 
 class CommentList extends Component {
 
@@ -10,11 +11,6 @@ class CommentList extends Component {
 
     static defaultProps = {
         comments: []
-    }
-
-    state = {
-        name: '',
-        comment: ''
     }
 
     componentDidUpdate() {
@@ -27,36 +23,12 @@ class CommentList extends Component {
         return (
             <div ref={this.getContainerRef}>
 
-                <form method="post">
-                    <br/>
-                    <b>New comment:</b><br/>
-                    <textarea rows="3" value={this.state.comment} onChange={this.handleCommentChange}/>
-                    <br/>
-                    <label>Name:
-                        <input type="text" value={this.state.name} onChange={this.handleNameChange}/>
-                    </label>
-                </form>
+                <CommentForm />
 
                 <a href="#" onClick={toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
                 {this.getBody()}
             </div>
         )
-    }
-
-    handleNameChange = ev => {
-        if (ev.target.value.length > 10) return
-
-        this.setState({
-            name: ev.target.value
-        })
-    }
-
-    handleCommentChange = ev => {
-        if (ev.target.value.length > 150) return
-
-        this.setState({
-            comment: ev.target.value
-        })
     }
 
     getContainerRef = (ref) => {
