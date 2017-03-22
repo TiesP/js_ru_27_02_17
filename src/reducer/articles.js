@@ -12,6 +12,7 @@ export default (state = normalizedArticles, action) => {
             return state.map(article => {
                 if(article.id == payload.articleId) {
                     //article.comments.concat(id)
+                    //здесь ты мутируешь стейт. Возвращаешь новый массив, но внутри меняешь объекты по ссылке
                     article.comments.push(id)
                 }
                 return article
