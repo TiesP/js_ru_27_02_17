@@ -36,7 +36,7 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const {comments, isOpen} = this.props
+        const {comments, isOpen, articleId} = this.props
         if (!isOpen) return null
 
         if (!comments.length) {
@@ -44,7 +44,7 @@ class CommentList extends Component {
                 <h3>
                     No comments yet
                 </h3>
-                <NewCommentForm />
+                <NewCommentForm articleId={articleId} />
             </div>
         }
 
@@ -54,7 +54,7 @@ class CommentList extends Component {
                 <ul>
                     {commentItems}
                 </ul>
-                <NewCommentForm />
+                <NewCommentForm articleId={articleId}/>
             </div>
         )
     }

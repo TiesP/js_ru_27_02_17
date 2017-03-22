@@ -18,7 +18,7 @@ class Article extends Component {
         const body = isOpen
             ? <section>
                 {article.text}
-                <CommentList comments={article.comments} ref={this.getCommentList}/>
+                <CommentList comments={article.comments} articleId={article.id} ref={this.getCommentList}/>
             </section>
             : null
         return (
