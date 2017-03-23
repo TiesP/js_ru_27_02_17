@@ -5,6 +5,9 @@ export default store => next => action => {
     switch (type) {
         case ADD_COMMENT:
             next({...action, id: newId(store.getState())})
+            break
+        default :
+            next(action)
      }
 }
 
