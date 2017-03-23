@@ -11,8 +11,7 @@ export default (state = normalizedArticles, action) => {
             const { id } = action
             return state.map(article => {
                 if(article.id == payload.articleId) {
-                    //article.comments.concat(id)
-                    article.comments.push(id)
+                     return {...article, comments:article.comments.concat(id)}
                 }
                 return article
                 })
