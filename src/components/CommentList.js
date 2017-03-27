@@ -74,6 +74,7 @@ const mapStateToProps = (state, props) => {
     const {article} = props
     const commentsMap=state.comments.entities.get(article.id)
     return {
+        //лучше .toArray, тебе не обязательно всю сруктуру выносить назад в JS разворачивать
         comments: !commentsMap?[]:commentsMap.valueSeq().toJS(),
         loading: state.comments.loading,
         error: state.comments.error
