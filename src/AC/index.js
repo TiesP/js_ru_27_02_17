@@ -69,8 +69,8 @@ export function loadArticleById(id) {
 }
 
 export function loadCommentsByArticleId(articleId) {
-    return (dispatch) => {
-        dispatch({
+    return (d) => {
+        d({
             type: LOAD_COMMENTS_BY_ARTICLE_ID + START,
             payload: { articleId }
         })
@@ -80,13 +80,13 @@ export function loadCommentsByArticleId(articleId) {
             $.get(`/api/comment?article=${articleId}`)
                 .done(response =>
                 {
-                    dispatch({
+                    d({
                         type: LOAD_COMMENTS_BY_ARTICLE_ID + SUCCESS,
                         payload: { response, articleId }
                 })
                 }
             )
-                .fail(error => dispatch({
+                .fail(error => d({
                     type: LOAD_COMMENTS_BY_ARTICLE_ID + FAIL,
                     payload: { error, articleId }
                 }))
