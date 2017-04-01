@@ -49,6 +49,9 @@ export default (state = new DefaultReducerState(), action) => {
         case LOAD_ARTICLE_BY_ID + SUCCESS:
             return state.setIn(['entities', payload.id], new ArticleModel(payload.response))
 
+        case LOAD_ARTICLE_BY_ID + FAIL:
+            return state.deleteIn(['entities', payload.id])
+
         case LOAD_ARTICLE_COMMENTS + START:
             return state.setIn(['entities', payload.articleId, 'commentsLoading'], true)
 

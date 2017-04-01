@@ -18,7 +18,7 @@ Comment.propTypes = {
     })
 }
 
-const mapStateToProps = () => {
+const createMapStateToProps = () => {
     const findCommentSelector = createFindCommentSelector()
     return (state, props) => {
         return {
@@ -27,4 +27,4 @@ const mapStateToProps = () => {
     }
 }
 
-export default connect(mapStateToProps)(Comment)
+export default connect(createMapStateToProps)(Comment)
