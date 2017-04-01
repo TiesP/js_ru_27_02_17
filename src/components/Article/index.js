@@ -21,6 +21,7 @@ class Article extends Component {
     render() {
         const {article, isOpen, toggleOpen} = this.props
         if (!article) return null
+        console.log('from getArticle',isOpen)
 
         const body = isOpen
             ? <section>

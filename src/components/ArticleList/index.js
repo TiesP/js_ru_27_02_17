@@ -18,6 +18,7 @@ class ArticleList extends Component {
             return <Loader />
         }
 
+        console.log(match)
         const articleComponents = articles.map(article => <li key={article.id}>
             <Link to={`${match.url}/${article.id}`}>{article.title}</Link>
         </li>)
