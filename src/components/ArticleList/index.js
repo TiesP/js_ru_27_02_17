@@ -9,7 +9,9 @@ import './style.css'
 
 class ArticleList extends Component {
     static contextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+        lang: PropTypes.string,
+        dict: PropTypes.object
     }
 
     render() {
@@ -29,7 +31,7 @@ class ArticleList extends Component {
 
         return (
             <div>
-                <h3>User: {this.context.user}</h3>
+                <h3>{this.context.dict[this.context.lang].user}: {this.context.user}</h3>
                 <CSSTransition component="ul"
                                transitionName="article-list"
                                transitionAppear={true}

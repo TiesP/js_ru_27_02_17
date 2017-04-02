@@ -13,7 +13,9 @@ class CommentList extends Component {
     }
 
     static contextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+        lang: PropTypes.string,
+        dict: PropTypes.object
     }
 
     componentWillReceiveProps({isOpen, article, checkAndLoadArticleComments}) {
@@ -29,7 +31,7 @@ class CommentList extends Component {
 //        console.log('---', this.size)
         return (
             <div ref={this.getContainerRef}>
-                <a href="#" onClick={toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
+                <a href="#" onClick={toggleOpen}>{isOpen ? this.context.dict[this.context.lang].hide : this.context.dict[this.context.lang].show} {this.context.dict[this.context.lang].comments}</a>
                 {this.getBody()}
             </div>
         )

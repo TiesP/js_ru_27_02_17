@@ -12,20 +12,49 @@ import {loadAllArticles} from '../AC'
 import history from '../history'
 
 class App extends Component {
+
+
     static propTypes = {
     };
 
     static childContextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+        lang: PropTypes.string,
+        dict: PropTypes.object
     }
 
     state = {
-        text: ''
+        text: '',
+        lang: 'en'
+    }
+
+    dict = {
+        'en': {
+            btnDel: 'delete me',
+            user: 'User',
+            yourName: 'Enter your name',
+            hide: 'hide',
+            show: 'show',
+            comments: 'comments',
+            menu: 'Menu'
+        },
+        'ru': {
+            btnDel: 'удали меня',
+            user: 'Пользователь',
+            yourName: 'Введите ваше имя',
+            hide: 'скрыть',
+            show: 'показать',
+            comments: 'комментарии',
+            menu: 'Меню'
+        }
     }
 
     getChildContext() {
+
         return {
-            user: this.state.text
+            user: this.state.text,
+            lang: this.state.lang,
+            dict: this.dict
         }
     }
 
@@ -37,7 +66,14 @@ class App extends Component {
         return (
             <ConnectedRouter history={history}>
                 <div>
-                    Enter your name: <input type="text" value={this.state.text} onChange={this.handleTextChange}/>
+                    <p>
+                    <select onChange={this.handleLangChange}>
+                        <option disabled>Выберите язык:</option>
+                        <option value="en">English</option>
+                        <option value="ru">Русский</option>
+                    </select>
+                    </p>
+                    {this.dict[this.state.lang].yourName}: <input type="text" value={this.state.text} onChange={this.handleTextChange}/>
                     <Menu>
                         <MenuItem path="/counter"/>
                         <MenuItem path="/filters"/>
@@ -62,6 +98,12 @@ class App extends Component {
 
         this.setState({
             text: ev.target.value
+        })
+    }
+
+    handleLangChange = ev => {
+        this.setState({
+            lang: ev.target.value
         })
     }
 }
