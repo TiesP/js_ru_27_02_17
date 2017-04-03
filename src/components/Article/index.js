@@ -29,6 +29,7 @@ class Article extends Component {
 
     static contextTypes = {
         user: PropTypes.string,
+//тут и в других местах: лучше сделай декоратор либо компонент-обертку для локализации, чтоб не обращатся каждый раз к контексту, иначе потом тяжело будет что-либо поменять
         lang: PropTypes.string,
         dict: PropTypes.object
     }
